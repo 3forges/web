@@ -1,0 +1,46 @@
+---
+import * as greatProject from '../../content/projects/omega.md';
+
+// const projects = await Astro.glob('../../content/projects/*.md');
+
+import { getCollection, getEntry } from 'astro:content';
+
+// Get all entries from a collection.
+// Requires the name of the collection as an argument.
+// Example: retrieve `src/content/blog/**`
+
+
+export async function getStaticPaths({ paginate }) {
+  const allTags = ['red', 'blue', 'green'];
+  //const allProjects = await getCollection('projects');
+  const allProjects = await Astro.glob('../../content/projects/*.md');
+  console.log(allProjects);
+  // const allPosts = await Astro.glob('../../posts/*.md');
+  // For every tag, return a paginate() result.
+  // Make sure that you pass `{params: {tag}}` to `paginate()`
+  // so that Astro knows which tag grouping the result is for.
+  return allTags.map((tag) => {
+    const filteredProjects = allProjects.filter((project) => project.frontmatter.tag === tag);
+    return paginate(filteredProjects, {
+      params: { tag },
+      pageSize: 3
+    });
+  });
+}
+const { page } = Astro.props;
+// const params = Astro.params;
+---
+
+<h2>Great Project</h2>
+<section>
+  <p>{greatProject.frontmatter.title}</p>
+  <p>Written by: {greatProject.frontmatter.author}</p>
+</section>
+
+<h1>Portfolio {page.currentPage}</h1>
+<ul>
+  {page.data.map(({ astronaut, url, title }) => <li>{title} : <a href={ url }>{astronaut}</a></li>)}
+</ul>
+{page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
+{page.url.next ? <a href={page.url.next}>Next</a> : null}
+
