@@ -1,0 +1,62 @@
+---
+import { Astronav, MenuItems, MenuIcon, Dropdown, DropdownItems } from "astro-navbar";
+---
+
+<div>
+  <Astronav>
+    <div class="flex justify-between">
+      <a>Your Logo</a>
+      <MenuIcon class="w-4 h-4 text-gray-800" />
+    </div>
+    <!--
+    // add `hidden` class by default for mobile
+    // `lg:flex` is to make it visible in desktop
+    // You may use custom CSS instead.
+    -->
+    <MenuItems class="hidden lg:flex">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="hidden md:flex items-center space-x-1">
+                    <ul>
+                        <li>
+                            <a href="#"
+                            class="py-4 px-2 text-gray-500 font-semibold hover:text-purple-500 transition duration-300">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"
+                        class="py-4 px-2 text-gray-500 font-semibold hover:text-purple-500 transition duration-300">
+                        About
+                    </a>
+                </li>
+                <li>
+                    <Dropdown class="group">
+                        <button>
+                            <span> Services </span>
+                            <!-- You can style when dropdown is `open` -->
+                            <svg class="group-open:rotate-180">...3Forges arrow..</svg>
+                        </button>
+                        <DropdownItems>
+                            <div class="absolute top-0">
+                                <ul>
+                                    <li>3Forges Menu 1</li>
+                                    <li>3Forges Menu 2</li>
+                                    <li>3Forges Menu 3</li>
+                                </ul>
+                            </div>
+                        </DropdownItems>
+                    </Dropdown>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+    </MenuItems>
+  </Astronav>
+</div>

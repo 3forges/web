@@ -3,14 +3,32 @@ import Layout from '../layouts/Layout.astro';
 import BobLayout from '../layouts/Bob.layout.astro';
 import TailwindExample from '../layouts/TailwindExample.astro';
 import NavBar from '../layouts/NavBar.astro';
+import DaisyNavBar from '../layouts/DaisyNavBar.astro';
 import Calendar from '../layouts/Calendar.astro';
+import RegisterHero from '../components/auth/register.astro';
 
+import ForgesNavBar from '../layouts/ForgesNavBar.astro'
 
 import Card from '../components/Card.astro';
+
+
+
+
+
 ---
 
 <Layout title="Welcome to Astro.">
-	<NavBar image="https://www.locofy.ai/blog/locofylogo.svg"/>
+	<!-- NavBar image="https://www.locofy.ai/blog/locofylogo.svg"/ -->
+	<DaisyNavBar logo='https://astro.build'/>
+	<RegisterHero />
+	<!-- ForgesNavBar >
+		<ul>
+			<li><a href="https://astro.build" target="_blank"> Boris</a></li>
+			<li><a href="https://astro.build" target="_blank"> J-Baptiste</a></li>
+			<li><a href="https://astro.build" target="_blank"> Léo</a></li>
+			
+		</ul>
+	</ForgesNavBar -->
 	<main>
 		<h1>Bienvenu sur <span class="text-gradient">3Forges</span></h1>
 		<p class="instructions">

@@ -43,3 +43,27 @@ cat ./add.on.astro.config.mjs
 
 pnpm add -D @astrojs/markdown-remark @astrojs/mdx @astrojs/rss @astrojs/sitemap @astrojs/tailwind @astropub/md
 ```
+
+
+### Add Daisy UI in the astro tailwind css project
+
+* First, install daisy ui : 
+
+```bash
+pnpm add daisyui
+
+```
+
+* then add the daisy ui tailwindcsss plugins to the tailwind css configuration, of the astro project `tailwind.config.cjs` : 
+
+```cjs
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+	theme: {
+		extend: {},
+	},
+	plugins: [require("daisyui")],
+}
+```
