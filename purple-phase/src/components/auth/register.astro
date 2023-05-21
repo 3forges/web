@@ -18,7 +18,13 @@ const coffeeResponse = await fetch('https://coffee.alexflipnote.dev/random.json'
 const coffeeData = await coffeeResponse.json();
 const coffeeImg = coffeeData.file;
 console.log(` coffeeImg = [${coffeeImg}] `)
-// "background-image: url(&quot;" + coffeeImg + "&quot;);"
+
+// https://techy-api.vercel.app/api/json
+
+const techyResponse = await fetch('https://coffee.alexflipnote.dev/random.json');
+const techyData = await techyResponse.json();
+const techyMessage = techyResponse.message;
+console.log(` techyMessage = [${techyMessage}] `)
 ---
 
 
@@ -29,6 +35,7 @@ console.log(` coffeeImg = [${coffeeImg}] `)
     </figure> 
     <div class="max-w-md card-body">
       <h2>3 Forges App ! Trois Forges, une pour l'indépendnance, une pour la technologie, et une pour l'open-source.</h2> 
+      <p>{techyMessage}</p>
       <!-- div class="card-actions">
         <button class="btn glass rounded-full">Get Started</button>
       </div -->
