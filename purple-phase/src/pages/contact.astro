@@ -1,0 +1,153 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const response = await fetch('https://randomuser.me/api/');
+const data = await response.json();
+const randomUser = data.results[0];
+
+// coffees : https://coffee.alexflipnote.dev/random.json
+
+const coffeeResponse = await fetch('https://coffee.alexflipnote.dev/random.json');
+const coffeeData = await coffeeResponse.json();
+const coffeeImg = coffeeData.file;
+console.log(` coffeeImg = [${coffeeImg}] `)
+
+// https://techy-api.vercel.app/api/json
+
+const techyResponse = await fetch('https://techy-api.vercel.app/api/json');
+const techyData = await techyResponse.json();
+const techyMessage = techyData.message;
+console.log(` techyMessage = [${techyMessage}] `)
+
+
+const picsumID = null;
+
+// https://picsum.photos/id/1005/300/200
+/**
+ * 
+ */
+const picsumResponse = await fetch('https://picsum.photos/200/300').then(resp=> {
+
+console.log(` Now Picsum Location is : ${resp.headers.get('location')}`);
+
+console.log(` # ------------------------------------------------------`);
+// console.log(resp.headers);
+//console.log(JSON.stringify(resp, ' ' , 4));
+console.log(resp);
+console.log(JSON.stringify(resp, null));
+
+console.log(` # ------- Picsum ID : `);
+
+console.log(resp.headers.get('picsum-id'));
+console.log(` # ------------------------------------------------------`);
+
+  return resp.headers.get('picsum-id')
+})
+const randomFocusRegisterImage = `https://picsum.photos/id/${picsumResponse}/200/300`
+console.log(` +++ picsum id : ${picsumResponse}`)
+console.log(` +++ randomFocusRegisterImage : ${randomFocusRegisterImage}`)
+
+---
+
+
+<Layout title="Welcome to Astro.">
+
+
+    <div class="w-1/2 mx-auto md:w-96 md:max-w-full mx-auto">
+        <div class="p-6 border border-gray-300 sm:rounded-md">
+          <form method="POST" action="https://herotofu.com/start">
+            <label class="block mb-6">
+              <span class="text-gray-700">Your name</span>
+              <input
+                type="text"
+                name="name"
+                class="
+                  block
+                  w-full
+                  mt-1
+                  border-gray-300
+                  rounded-md
+                  shadow-sm
+                  focus:border-indigo-300
+                  focus:ring
+                  focus:ring-indigo-200
+                  focus:ring-opacity-50
+                "
+                placeholder="Joe Bloggs"
+              />
+            </label>
+            <label class="block mb-6">
+              <span class="text-gray-700">Email address</span>
+              <input
+                name="email"
+                type="email"
+                class="
+                  block
+                  w-full
+                  mt-1
+                  border-gray-300
+                  rounded-md
+                  shadow-sm
+                  focus:border-indigo-300
+                  focus:ring
+                  focus:ring-indigo-200
+                  focus:ring-opacity-50
+                "
+                placeholder="joe.bloggs@example.com"
+                required
+              />
+            </label>
+            <label class="block mb-6">
+              <span class="text-gray-700">Message</span>
+              <textarea
+                name="message"
+                class="
+                  block
+                  w-full
+                  mt-1
+                  border-gray-300
+                  rounded-md
+                  shadow-sm
+                  focus:border-indigo-300
+                  focus:ring
+                  focus:ring-indigo-200
+                  focus:ring-opacity-50
+                "
+                rows="3"
+                placeholder="Tell us what you're thinking about..."
+              ></textarea>
+            </label>
+            <div class="mb-6">
+              <button
+                type="submit"
+                class="
+                  btn btn-primary
+                  text-indigo-100
+                  bg-indigo-700
+                  rounded-lg
+                  transition-colors
+                  duration-150
+                  focus:shadow-outline
+                  hover:bg-indigo-800
+                "
+              >
+                Contact Us
+              </button>
+            </div>
+            <div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+      
+
+</div><!--End of Layout -->
+
+<style>
+
+body {
+  font-family: "Poppins", sans-serif !important;
+}
+
+</style>
