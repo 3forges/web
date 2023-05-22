@@ -21,17 +21,47 @@ console.log(` coffeeImg = [${coffeeImg}] `)
 
 // https://techy-api.vercel.app/api/json
 
-const techyResponse = await fetch('https://coffee.alexflipnote.dev/random.json');
+const techyResponse = await fetch('https://techy-api.vercel.app/api/json');
 const techyData = await techyResponse.json();
-const techyMessage = techyResponse.message;
+const techyMessage = techyData.message;
 console.log(` techyMessage = [${techyMessage}] `)
+
+
+const picsumID = null;
+
+// https://picsum.photos/id/1005/300/200
+/**
+ * 
+ */
+const picsumResponse = await fetch('https://picsum.photos/200/300').then(resp=> {
+
+console.log(` Now Picsum Location is : ${resp.headers.get('location')}`);
+
+console.log(` # ------------------------------------------------------`);
+// console.log(resp.headers);
+//console.log(JSON.stringify(resp, ' ' , 4));
+console.log(resp);
+console.log(JSON.stringify(resp, null));
+
+console.log(` # ------- Picsum ID : `);
+
+console.log(resp.headers.get('picsum-id'));
+console.log(` # ------------------------------------------------------`);
+
+  return resp.headers.get('picsum-id')
+})
+const randomFocusRegisterImage = `https://picsum.photos/id/${picsumResponse}/200/300`
+console.log(` +++ picsum id : ${picsumResponse}`)
+console.log(` +++ randomFocusRegisterImage : ${randomFocusRegisterImage}`)
+
+// "https://picsum.photos/id/1005/300/200"
 ---
 
 
 <div class="flex items-center w-full px-4 py-10 bg-cover card bg-base-200" style={"background-image: url('" + coffeeImg + "');" }>
   <div class="card glass lg:card-side text-neutral-content">
     <figure class="p-6">
-      <img src="https://picsum.photos/id/1005/300/200" class="rounded-lg shadow-lg">
+      <img src={randomFocusRegisterImage} class="rounded-lg shadow-lg">
     </figure> 
     <div class="max-w-md card-body">
       <h2>3 Forges App ! Trois Forges, une pour l'indépendnance, une pour la technologie, et une pour l'open-source.</h2> 
