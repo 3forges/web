@@ -1,0 +1,65 @@
+---
+import * as Config from '../../content/config'
+import md from 'markdown-it'
+import Layout from '../../layouts/JB.Layout.astro';
+import { MarkDownRenderer, GithubRenderer, GiteaRenderer, GitlabRenderer, troisForgesRender } from '../../pages/projects'
+import { getCollection } from 'astro:content';
+import DaisyCard from '../../components/DaisyCard.astro'
+
+// --- --- --- --- --- --- --- --- --- --- 
+// --- --- --- --- --- --- --- --- --- --- 
+// --- --- --- --- --- --- --- --- --- --- 
+// --- --- Tests URLs
+// --- --- --- --- --- --- --- --- --- --- 
+// --- --- --- --- --- --- --- --- --- --- 
+const githubMarkDownURL = `https://gitlab.in2p3.fr/lea.pamphile/exam_as_pamphile_lea/-/raw/master/README.md`
+const gitlabMarkDownURL = `https://gitlab.in2p3.fr/lea.pamphile/exam_as_pamphile_lea/-/raw/master/README.md`
+const giteaMarkDownURL = `https://gitlab.in2p3.fr/lea.pamphile/exam_as_pamphile_lea/-/raw/master/README.md`
+    
+// --- --- --- --- --- --- --- --- --- --- 
+// --- START OF ASTRO RELATED DECLARATIONS
+// --- --- --- --- --- --- --- --- --- --- 
+
+export async function getStaticPaths() {
+    const projects = await getCollection('projects');
+    // console.log(projects);
+    return projects.map(entry => ({
+        params: {slug: entry.slug }, props: { entry },
+    }));
+}
+const { entry } = Astro.props;
+// --- --- --- --- --- --- --- --- --- --- 
+// --- END OF ASTRO RELATED DECLARATIONS
+// --- --- --- --- --- --- --- --- --- --- 
+
+
+const { Content } = await entry.render();
+
+
+
+
+// let  = await selectedRenderer.renderer.render()
+//return entryRenderedMarkdow
+//}
+const entryRenderedMarkdow = await troisForgesRender(entry);
+---
+
+
+
+
+<Layout title="Welcome to Astro.">
+    
+
+    <h1>The title is : {entry.data.title}</h1>
+    <h1>The team is : {entry.data.team}</h1>
+    <h1>The url is : {entry.data.url}</h1>
+    <h1>The renderer is : {entry.data.renderer}</h1>
+
+    <DaisyCard image={entry.data.image} team={entry.data.team} url={entry.data.url} renderer={entry.data.renderer} title={entry.data.title} mainBadge={entry.data.mainBadge} description={entry.data.description} secundaryBadge="Python" lastBadge="wheel" />
+
+
+    <Content />
+    <div set:html={entryRenderedMarkdow} />
+    <!-- { true && <SomeComponent /> } -->
+
+</Layout>

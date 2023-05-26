@@ -1,0 +1,44 @@
+---
+export interface Props {
+	title: string;
+	mainBadge: string;
+	description: string;
+	secundaryBadge: string;
+	lastBadge: string;
+	team: string;
+	url: string;
+	renderer: string;
+  image: string;
+}
+
+
+// <DaisyCard title="The A Project" mainBadge="NEW" description="A most awesome project" secundaryBadge="Python" lastBadge="wheel" />
+const { image, title, mainBadge, description, secundaryBadge, lastBadge, team, url, renderer } = Astro.props;
+---
+
+   <!-- and just the card layout -->
+  <div class="card w-96 bg-base-100 shadow-xl mb-11">
+    <figure><img src={image} alt="Shoes" /></figure>
+    <div class="card-body">
+      <h2 class="card-title">
+        {title}
+        <div class="badge badge-secondary">{mainBadge}</div>
+      </h2>
+      <p>{description}</p>
+      
+      <div class="card-actions justify-end">
+        <a href={url} class="btn btn-outline" target="_blank">Project's URL</a>
+      </a>
+
+      <div class="card-actions justify-end">
+        <div class="badge badge-outline">{secundaryBadge}</div>
+        <div class="badge badge-outline">{lastBadge}</div>
+        <div class="badge badge-outline">{team}</div>
+        <div class="badge badge-outline">{renderer}</div>
+
+      </div>
+    </div>
+  </div>  
+
+
+

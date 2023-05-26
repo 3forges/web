@@ -1,0 +1,135 @@
+---
+
+export interface Props {
+	example: string;
+}
+
+const { example = "Application" } = Astro.props;
+---
+
+
+<div class="px-10 py-15 w-full md:flex justify-between">
+  <div class="flex-shrenk-0 w-full md:w-80 h-screen sticky top-0 overflow-y-auto">
+      <nav class="navbar shadow-lg p-5">
+          <div class="font-semibold">{example}</div>
+      </nav>
+      <ul class="menu p-5">
+          <li class="menu-title"><span>Navigation</span></li>
+          <li><a class="active" href="#"><i class="fa fa-chart-line"></i> Dashboard</a></li>
+          <li><a href="#"><i class="fa fa-clipboard-list"></i> Records</a></li>
+          <li><a href="#"><i class="fa fa-inbox"></i> Inbox</a></li>
+          <li><a href="#"><i class="fa fa-database"></i> File Manager</a></li>
+          <li><a href="#"><i class="fa fa-table"></i> Point of Sale</a></li>
+          <li><a href="#"><i class="fa fa-message"></i> Chat</a></li>
+          <li class="menu-title"><span>Other settings</span></li>
+          <li><a href="#"><i class="fa fa-user-cog"></i> User Management</a></li>
+          <li><a href="#"><i class="fa fa-cog"></i> UI Settings</a></li>
+          <li class="menu-title"><span>Folders</span></li>
+          <li><a href="#"><i class="fa fa-folder"></i> Page 1</a></li>
+          <li><a href="#"><i class="fa fa-folder"></i> Page 2</a></li>
+          <li><a href="#"><i class="fa fa-folder"></i> Page 3</a></li>
+          <li><a href="#"><i class="fa fa-folder"></i> Page 4</a></li>
+          <li><a href="#"><i class="fa fa-folder"></i> Page 5</a></li>
+          <li><a href="#"><i class="fa fa-folder"></i> Page 6</a></li>
+      </ul>
+  </div>
+  
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex-1">
+  <div class="flex items-center justify-between p-5">
+          <div class="breadcrumbs">
+            <ul>
+              <li><a href="#">{example}</a></li>
+              <li>Global Report</li>
+          </ul>
+      </div>
+      <div>
+          <div class="avatar gap-5">
+              <input type="search" class="input input-bordered rounded-full" placeholder="Search">
+              <div class="w-12 rounded-full">
+                <img src="https://api.lorem.space/image/face?hash=64318">
+              </div>
+          </div>
+      </div>
+  </div>
+
+              <div class="w-full p-5">
+          
+                <div class="shadow-lg">
+                  <div class="stats w-full">
+                    <div class="stat">
+                      <div class="stat-title">Item Sales</div>
+                      <div class="stat-value">5.9K</div>
+                      <div class="stat-desc">As of yesterday</div>
+                      <div class="stat-figure"><i class="fa fa-arrow-up text-success"></i> </div>
+                    </div>
+          
+                    <div class="stat">
+                      <div class="stat-title">New Orders</div>
+                      <div class="stat-value">2.3K</div>
+                      <div class="stat-desc">As of yesterday</div>
+                    </div>
+          
+                    <div class="stat">
+                      <div class="stat-title">Total Products</div>
+                      <div class="stat-value">15K</div>
+                      <div class="stat-desc">As of yesterday</div>
+                    </div>
+          
+                    <div class="stat">
+                      <div class="stat-title">Unique Visitor</div>
+                      <div class="stat-value">1.5K</div>
+                      <div class="stat-desc">As of yesterday</div>
+                    </div>
+          
+                  </div>
+                </div>
+                <!--Sales Report-->
+                <div class="shadow-lg my-8 p-5">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <h1 class="font-semibold text-xl">Sales Report</h1>
+                    </div>
+                    <div>
+                      <input type="date" class="input input-bordered" value="2022-03-01">
+                      <button class="btn btn-ghost"><i class="fa fa-search"></i></button>
+                    </div>
+                  </div>
+                  <div id="chart"></div>
+                </div>
+                <!--END Sales Report-->
+          
+                
+                <!--Graph Report-->
+                <div class="shadow-lg my-8 p-5">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <h1 class="font-semibold text-xl">Other Report</h1>
+                    </div>
+                    <div>
+                      <input type="date" class="input input-bordered" value="2022-03-01">
+                      <button class="btn btn-ghost"><i class="fa fa-search"></i></button>
+                    </div>
+                  </div>
+                  <div id="report"></div>
+                </div>
+                <!--END Report-->
+                
+                
+              </div>
+
+      
+            </div>

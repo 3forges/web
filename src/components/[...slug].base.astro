@@ -1,0 +1,108 @@
+---
+import * as Config from '../content/config'
+import md from 'markdown-it'
+import Layout from '../layouts/JB.Layout.astro';
+import { MarkDownRenderer, GithubRenderer, GiteaRenderer, GitlabRenderer } from '../../pages/projects'
+import { getCollection } from 'astro:content';
+
+// --- --- --- --- --- --- --- --- --- --- 
+// --- START OF ASTRO RELATED DECLARATIONS
+// --- --- --- --- --- --- --- --- --- --- 
+
+export async function getStaticPaths() {
+    const projects = await getCollection('projects');
+    // console.log(projects);
+    return projects.map(entry => ({
+        params: {slug: entry.slug }, props: { entry },
+    }));
+}
+const { entry } = Astro.props;
+// --- --- --- --- --- --- --- --- --- --- 
+// --- END OF ASTRO RELATED DECLARATIONS
+// --- --- --- --- --- --- --- --- --- --- 
+console.log(` JBL DEBUG >>>>>>>>>>>>>>>>>>>>>>`)
+console.log(` JBL DEBUG [entry]: >>>>>>>>>>>>>>>>>>>>>>`)
+console.log(` JBL DEBUG [entry]: >>>>>>>>>>>>>>>>>>>>>>`)
+console.log(` JBL DEBUG [entry]: >>>>>>>>>>>>>>>>>>>>>>`)
+console.log(` JBL DEBUG [entry]: >>>>>>>>>>>>>>>>>>>>>>`)
+console.log(` JBL DEBUG [entry]: >>>>>>>>>>>>>>>>>>>>>>`)
+console.log(` JBL DEBUG [entry]: >>>>>>>>>>>>>>>>>>>>>>`)
+console.log(` JBL DEBUG [entry]: >>>>>>>>>>>>>>>>>>>>>>`)
+console.log(` JBL DEBUG [entry]: >>>>>>>>>>>>>>>>>>>>>>`)
+console.log(` JBL DEBUG [entry]: >>>>>>>>>>>>>>>>>>>>>>`)
+console.log(` JBL DEBUG [entry]: >>>>>>>>>>>>>>>>>>>>>>`)
+console.log(` JBL DEBUG [entry]: >>>>>>>>>>>>>>>>>>>>>>`)
+console.log(` JBL DEBUG [entry]: >>>>>>>>>>>>>>>>>>>>>>`)
+console.log(` JBL DEBUG [entry]: >>>>>>>>>>>>>>>>>>>>>>`)
+console.log(` JBL DEBUG [entry]: >>>>>>>>>>>>>>>>>>>>>>`)
+console.log(` JBL DEBUG [entry]: >>>>>>>>>>>>>>>>>>>>>>`)
+console.log(` JBL DEBUG [entry]: >>>>>>>>>>>>>>>>>>>>>>`)
+console.log(entry)
+console.log(` JBL DEBUG >>>>>>>>>>>>>>>>>>>>>>`)
+console.log(` JBL DEBUG >>>>>>>>>>>>>>>>>>>>>>`)
+
+
+
+const { Content } = await entry.render();
+---
+
+
+
+
+<Layout title="Welcome to Astro.">
+    
+
+    <h1>The title is : {entry.data.title}</h1>
+    <h1>The team is : {entry.data.team}</h1>
+    <h1>The url is : {entry.data.url}</h1>
+    <h1>The renderer is : {entry.data.renderer}</h1>
+    <Content />
+    <div set:html="# Hello `3 Forges`" />
+    <!-- { true && <SomeComponent /> } -->
+
+</Layout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
