@@ -1,0 +1,89 @@
+---
+const { html, css } = Astro.props;
+---
+<style>
+/* CSS brillance.css */
+
+.mask a, a#maskavatar {
+    position: relative;
+    display: block;
+    width:88px;
+    height: 31px;
+    margin: 5px auto;
+    background-position: -88px 0;
+    -webkit-filter: drop-shadow(1px 1px 2px rgba(0,0,0,.6));
+}
+
+a#maskavatar {
+    float:left;
+    margin: 5px 5px;
+    width:128px;
+    height: 128px;
+    background-position: -130px 90px;
+}
+
+.mask a:hover, .mask a:focus {
+    background-position: 15px 0;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    transition: all 1s;
+}
+
+a#maskavatar:hover {
+    background-position: 15px 0;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.35;
+}
+
+.mask a::after, a#maskavatar::after{
+    content:'';
+    position: absolute;
+    pointer-events: none;
+    top:0; 
+    left:0; 
+    right:0; 
+    bottom: 0;
+    background: -webkit-radial-gradient(0 0,circle farthest-side, rgba(255,255,255,0) 90%,rgba(255,255,255,.8) 98%,rgba(255,255,255,0) 100%) no-repeat;
+    background: -moz-radial-gradient(0 0,circle farthest-side, rgba(255,255,255,0) 90%,rgba(255,255,255,.8) 98%,rgba(255,255,255,0) 100%) no-repeat;
+    background: radial-gradient(circle farthest-side at 0 0, rgba(255,255,255,0) 90%,rgba(255,255,255,.8) 98%,rgba(255,255,255,0) 100%) no-repeat;
+    background-position: inherit; 
+}
+
+a#maskavatar::after{ 
+    -webkit-mask: url('raw/mask-avatar.png') center; 
+    mask: url('#mask-avatar');
+}
+
+.mask a#w3html { left:8px; }
+.mask a#w3html::after {	-webkit-mask: url('raw/mask-w3chtml.png') center; mask: url('#mask-firefox2'); }
+            
+.mask a#w3css {	left:98px; top:-36px; }
+.mask a#w3css::after {	-webkit-mask: url('raw/mask-vcss-blue.png') center; mask: url('#mask-firefox3'); }
+
+svg { position:absolute; }
+
+</style>
+<div class="mask">	<!-- HTML5 -->
+    <a id="w3html" href={ html }>
+        <img src="../../public/w3chtml.png" alt="" style="height:31px;width:88px;" width="88" height="31">
+    </a>
+</div>	
+<svg><mask id="mask-firefox2"><image width="88" height="31" xlink:href="../../public/mask-w3chtml.png"></image> </mask></svg>
+
+<div class="mask">	<!-- CSS3 -->
+    <a id="w3css" href={ css }>
+        <img src="../../public/vcss-blue.gif" alt="" style="height:31px;width:88px;" width="88" height="31">
+    </a>
+</div>
+<svg><mask id="mask-firefox3"><image width="88" height="31" xlink:href="../../public/mask-vcss-blue.png"></image></mask></svg>
+<script type="text/javascript">
+    document.getElementsByid("w3html").href={html}+this.location.toString;
+    document.getElementsByid("w3css").href={css}+this.location.toString;
+</script>   
+<div class="mask">
+    <a id="w3css" href="">
+        <img class="badge rounded" src="https://img.shields.io/badge/HTML-1.1-52b5f7?style=for-the-badge&logo=w3c&logoColor=white" alt="This project HTML is fullly W3C compliant">
+    </a>
+</div>
+<svg><mask id="mask-firefox3"><image width="117" height="8" xlink:href="../../public/mask-vcss-blue.png"></image></mask></svg>

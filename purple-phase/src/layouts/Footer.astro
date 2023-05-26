@@ -1,0 +1,52 @@
+---
+import { Navigation, company } from '../config';
+export interface Props {
+	awesome: string;
+}
+
+const { awesome = "Awesome" } = Astro.props;
+---
+
+<footer class="footer p-10 bg-base-200 text-base-content">
+    <div>
+        <span class="footer-title">{awesome} Social</span> 
+        
+        <a class="link link-hover" href={company.social.discord} >discord</a> 
+        <a class="link link-hover" href={company.social.facebook} >facebook</a> 
+        <a class="link link-hover" href={company.social.twitter} >twitter</a> 
+        <a class="link link-hover" href={company.social.instagram} >instagram</a>
+      </div> 
+    <div>
+      <span class="footer-title">Services</span> 
+      <a class="link link-hover">Branding</a> 
+      <a class="link link-hover">Design</a> 
+      <a class="link link-hover">Marketing</a> 
+      <a class="link link-hover">Advertisement</a>
+    </div> 
+    <div>
+      <span class="footer-title">{company.name}</span> 
+      
+      <a class="link link-hover" href={Navigation[0].url} >{Navigation[0].title}</a> 
+      <a class="link link-hover" href={Navigation[1].url} >{Navigation[1].title}</a> 
+      <a class="link link-hover" href={Navigation[2].url} >{Navigation[2].title}</a> 
+      <a class="link link-hover" href={Navigation[3].url} >{Navigation[3].title}</a>
+    </div> 
+    <div>
+      <span class="footer-title">Legal</span> 
+      <a class="link link-hover">Terms of use</a> 
+      <a class="link link-hover">Privacy policy</a> 
+      <a class="link link-hover">Cookie policy</a>
+    </div> 
+    <div>
+      <span class="footer-title">Newsletter</span> 
+      <div class="form-control w-80">
+        <label class="label">
+          <span class="label-text">Enter your email address</span>
+        </label> 
+        <div class="relative">
+          <input type="text" placeholder="username@site.com" class="input input-bordered w-full pr-16" /> 
+          <button class="btn btn-primary absolute top-0 right-0 rounded-l-none">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </footer>

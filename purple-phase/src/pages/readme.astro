@@ -1,0 +1,101 @@
+---
+import md from 'markdown-it';
+import { Octokit } from "@octokit/rest";
+
+import Layout from '../layouts/JB.Layout.astro';
+export interface Props {
+    title: string;
+    raw_md_url: URL;
+}
+
+const { title, raw_md_url = `https://raw.githubusercontent.com/erasabi/trekthroughs/master/pen_testing/RickdiculouslyEasy.md` } = Astro.props;
+
+const example1Md = 'https://raw.githubusercontent.com/andreasbm/readme/master/README.md'
+/*
+ * pnpm add -D marked @types/marked
+ * https://www.npmjs.com/package/marked
+ * https://docs.astro.build/en/guides/data-fetching/
+ */
+/*
+ * needs header [-H 'Content-Type: application/vnd.github.raw']
+ */    
+
+//const markeddowResponse = await fetch(${example1Md}, {});
+const markeddowResponse = await fetch(
+    'https://raw.githubusercontent.com/erasabi/trekthroughs/master/pen_testing/RickdiculouslyEasy.md', 
+    { [headers]: 'Content-Type : application/vnd.github.raw' }
+);
+
+var markeddowResponseData = new FileReader();
+markeddowResponseData.onload = function() {
+    alert(markeddowResponseData.result);
+};
+markeddowResponseData.readAsText(markeddowResponse);
+//const markeddowResponseData = await markeddowResponse.json();
+
+const response = await fetch('https://randomuser.me/api/');
+const data = await response.json();
+const randomUser = data.results[0];
+
+interface PokusConfig {
+    markdown: string;
+}
+const myReadMeConfig : PokusConfig = {
+    // markdown: '# Default 3Forges Markdown'
+    markdown: markeddowResponseData
+};
+
+
+const rendredMd = await md().render(markeddowResponseData);
+
+// +++ // +++ // +++ // +++ // +++ // +++ // +++ // +++ 
+// +++ // +++ // +++ // +++ // +++ // +++ // +++ // +++ 
+// +++ // +++ // +++ // +++ // +++ // +++ // +++ // +++ 
+// +++ // +++ // +++ // OCTOKIT -+- OCTOKIT 
+// +++ // +++ // +++ // +++ // +++ // +++ // +++ // +++ 
+// +++ // +++ // +++ // +++ // +++ // +++ // +++ // +++ 
+// +++ // +++ // +++ // +++ // +++ // +++ // +++ // +++ 
+//
+//  We render the Markdown using he Github Renderer throuh the Github API : to improve the rendering and get as close as possible from the original README
+//  That's why the only thing to do is to use the Gitlab Renderer,n, if we use gitlab
+//
+// const octokit = new Octokit();
+// Octokit.js
+// https://github.com/octokit/core.js#readme
+const octokit = new Octokit({
+  auth: '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'
+}) // FORGES_GITHUB_PAT_TOKEN : Github Personal Access Token
+console.log("<><><><><><>The 3Forges Github Token value is : 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")
+const githubRenderedMd = await octokit.request('POST /markdown', {
+  text: {markeddowResponseData},
+  headers: {
+    'X-GitHub-Api-Version': '2022-11-28'
+  }
+})
+
+console.log(githubRenderedMd) 
+
+
+---
+<!--
+
+    {marked.marked(markeddowResponseData)}
+    
+     <Layout title="Welcome to Astro.">
+        <div set:html={markeddowResponseData} />
+    </Layout>
+ -->
+
+
+<Layout title="Welcome to Astro.">
+    <!--
+      
+    <div set:html={JSON.stringify(githubRenderedMd,  null, 4)} />
+     -->
+    
+    <div set:html={githubRenderedMd.data} />
+    
+    <!-- script src="script.js" defer></script -->
+
+
+</Layout>

@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+const projects = await getCollection('portfolio');
+console.log(projects);
+---
+
+<h2>Great Project</h2>
+{projects.map(entry => (
+  <section>
+    <hr />
+    <p>
+      <a href={entry.slug}>{entry.data.title}</a>
+      </p>
+    <p>
+      <a href={entry.data.url} target='_blank'>{entry.data.url}</a></p>
+  </section>
+  ))
+}
+
+

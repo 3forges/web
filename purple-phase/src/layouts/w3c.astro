@@ -1,0 +1,56 @@
+---
+const { html, css } = Astro.props;
+---
+<div style="position:relative">
+<img class="tailwind-style badge rounded bouton shiny p-0 border-0" src="https://img.shields.io/badge/HTML-1.1-52b5f7?style=for-the-badge&logo=w3c&logoColor=white" alt="This project HTML is fullly W3C compliant">
+<span class="shine"></span>
+</img>
+</div>
+<style is:global>
+:root {
+    --duration: 3s;
+    --easing: linear;
+    --delay: 0s;
+}
+
+
+@keyframes shine { 
+    20%, 100% { transform: translateX(150%); }
+}
+
+// ==============================================
+// TailwindCSS 'style'
+// ==============================================
+.tailwind-style {
+    position: relative;
+    /* width: 200px; */
+    /* margin-bottom: 1rem; */
+    /* padding: 30px 15px; */
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border: 0;
+    /*border-radius: 10px;*/
+    background-color: steelblue;
+    overflow: hidden;
+}
+.shine {
+    position: absolute;
+    top: 0; left: 0;
+    width: 300px;
+    height: 100%;
+    color: rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255,0);
+    background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 25%,
+        rgba(255, 255, 255, .5) 50%,
+        rgba(255, 255, 255, 0) 75%
+    );
+    transform: skewX(-20deg) translateX(-100%);
+    animation: var(--duration) var(--easing) var(--delay) infinite forwards shine;
+}
+
+
+</style>
